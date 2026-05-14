@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>C-51 Water & Tide Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C-51 Canal Monitor</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -31,474 +31,375 @@
     }
   </style>
 </head>
+
 <body class="min-h-screen p-4">
 
-  <div class="max-w-md mx-auto space-y-4">
+<div class="max-w-md mx-auto space-y-4">
 
-    <!-- HEADER -->
-    <div class="text-center pt-4">
-      <h1 class="text-3xl font-bold">C-51 Canal Monitor</h1>
-      <p class="text-slate-300 text-sm mt-1">
-        S-155 / S-155A + NOAA Tide Data
-      </p>
-    </div>
-
-    <!-- SAFETY GAUGE -->
-    <div id="safetyCard"
-      class="rounded-3xl p-6 text-center shadow-2xl transition-all duration-500">
-
-      <div class="text-sm uppercase tracking-widest mb-2 opacity-80">
-        Swim Safety Status
-      </div>
-
-      <div id="statusLight"
-        class="w-28 h-28 rounded-full mx-auto mb-5 shadow-2xl pulse">
-      </div>
-
-      <div id="statusText"
-        class="text-2xl font-black leading-tight">
-        Loading...
-      </div>
-
-      <div id="statusSubtext"
-        class="mt-3 text-sm opacity-90">
-      </div>
-    </div>
-
-    <!-- TIDE CARD -->
-    <div class="card rounded-3xl p-5">
-      <h2 class="text-xl font-bold mb-4">NOAA Tide</h2>
-
-      <div class="space-y-3">
-
-        <div class="flex justify-between">
-          <span class="text-slate-300">Current Tide</span>
-          <span id="currentTide">--</span>
-        </div>
-
-        <div class="flex justify-between">
-          <span class="text-slate-300">Tide Trend</span>
-          <span id="tideTrend">--</span>
-        </div>
-
-        <div class="flex justify-between">
-          <span class="text-slate-300">Next High Tide</span>
-          <span id="nextHighTide">--</span>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- FLOW CARD -->
-    <div class="card rounded-3xl p-5">
-      <h2 class="text-xl font-bold mb-4">SFWMD Structures</h2>
-
-      <div class="space-y-4">
-
-        <!-- S-155 -->
-        <div>
-          <div class="font-bold text-lg mb-2">S-155</div>
-
-          <div class="grid grid-cols-2 gap-2 text-sm">
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Flow (CFS)</div>
-              <div id="flow155" class="text-xl font-bold">--</div>
-            </div>
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Gate Offset</div>
-              <div id="gate155" class="text-xl font-bold">--</div>
-            </div>
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Upstream</div>
-              <div id="up155" class="text-xl font-bold">--</div>
-            </div>
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Downstream</div>
-              <div id="down155" class="text-xl font-bold">--</div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- S-155A -->
-        <div>
-          <div class="font-bold text-lg mb-2">S-155A</div>
-
-          <div class="grid grid-cols-2 gap-2 text-sm">
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Flow (CFS)</div>
-              <div id="flow155a" class="text-xl font-bold">--</div>
-            </div>
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Gate Offset</div>
-              <div id="gate155a" class="text-xl font-bold">--</div>
-            </div>
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Upstream</div>
-              <div id="up155a" class="text-xl font-bold">--</div>
-            </div>
-
-            <div class="bg-slate-800 p-3 rounded-xl">
-              <div class="text-slate-400">Downstream</div>
-              <div id="down155a" class="text-xl font-bold">--</div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- WATER QUALITY -->
-    <div class="card rounded-3xl p-5">
-      <h2 class="text-xl font-bold mb-4">Water Quality</h2>
-
-      <div class="grid grid-cols-3 gap-3 text-center">
-
-        <div class="bg-slate-800 p-3 rounded-xl">
-          <div class="text-slate-400 text-sm">Nitrogen</div>
-          <div id="nitrogen" class="text-xl font-bold">--</div>
-        </div>
-
-        <div class="bg-slate-800 p-3 rounded-xl">
-          <div class="text-slate-400 text-sm">Phosphorus</div>
-          <div id="phosphorus" class="text-xl font-bold">--</div>
-        </div>
-
-        <div class="bg-slate-800 p-3 rounded-xl">
-          <div class="text-slate-400 text-sm">Chl-a</div>
-          <div id="chlorophyll" class="text-xl font-bold">--</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="text-center text-xs text-slate-400 pb-8">
-      Auto-refreshes every 15 minutes
-    </div>
-
+  <!-- HEADER -->
+  <div class="text-center pt-4">
+    <h1 class="text-3xl font-bold">C-51 Canal Monitor</h1>
+    <p class="text-slate-300 text-sm mt-1">
+      S-155 / S-155A + NOAA Tide Data
+    </p>
   </div>
 
-  <script>
+  <!-- SAFETY GAUGE -->
+  <div id="safetyCard" class="rounded-3xl p-6 text-center shadow-2xl transition-all duration-500">
 
-    // =========================
-    // CONFIG
-    // =========================
+    <div class="text-sm uppercase tracking-widest mb-2 opacity-80">
+      Swim Safety Status
+    </div>
 
-    const NOAA_STATION = "8722670";
+    <div id="statusLight" class="w-28 h-28 rounded-full mx-auto mb-5 shadow-2xl pulse"></div>
 
-    // Replace with actual DBHYDRO endpoint if needed
-    const SFWMD_API_BASE =
-      "https://www.sfwmd.gov/webapps/dbhydroplsql";
+    <div id="statusText" class="text-2xl font-black leading-tight">
+      Loading...
+    </div>
 
-    // =========================
-    // FETCH NOAA DATA
-    // =========================
+    <div id="statusSubtext" class="mt-3 text-sm opacity-90"></div>
+  </div>
 
-    async function fetchNOAAData() {
+  <!-- TIDE -->
+  <div class="card rounded-3xl p-5">
+    <h2 class="text-xl font-bold mb-4">NOAA Tide</h2>
 
-      const today = new Date();
-      const begin = formatDate(today);
+    <div class="space-y-3">
+      <div class="flex justify-between">
+        <span class="text-slate-300">Current Tide</span>
+        <span id="currentTide">--</span>
+      </div>
 
-      const tomorrow = new Date();
-      tomorrow.setDate(today.getDate() + 1);
+      <div class="flex justify-between">
+        <span class="text-slate-300">Tide Trend</span>
+        <span id="tideTrend">--</span>
+      </div>
 
-      const end = formatDate(tomorrow);
+      <div class="flex justify-between">
+        <span class="text-slate-300">Next High Tide</span>
+        <span id="nextHighTide">--</span>
+      </div>
+    </div>
+  </div>
 
-      const url =
-        `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?` +
-        `product=predictions` +
-        `&application=webapp` +
-        `&begin_date=${begin}` +
-        `&end_date=${end}` +
-        `&datum=MLLW` +
-        `&station=${NOAA_STATION}` +
-        `&time_zone=lst_ldt` +
-        `&units=english` +
-        `&interval=hilo` +
-        `&format=json`;
+  <!-- STRUCTURES -->
+  <div class="card rounded-3xl p-5">
+    <h2 class="text-xl font-bold mb-4">SFWMD Structures</h2>
 
-      const res = await fetch(url);
-      const data = await res.json();
+    <!-- S-155 -->
+    <div class="mb-6">
+      <div class="font-bold text-lg mb-2">S-155</div>
 
-      const predictions = data.predictions || [];
+      <div class="grid grid-cols-2 gap-2 text-sm">
 
-      const now = new Date();
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Flow (CFS)</div>
+          <div id="flow155" class="text-xl font-bold">--</div>
+        </div>
 
-      let nextHigh = null;
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Gate Offset</div>
+          <div id="gate155" class="text-xl font-bold">--</div>
+        </div>
 
-      for (const p of predictions) {
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Upstream</div>
+          <div id="up155" class="text-xl font-bold">--</div>
+        </div>
 
-        const tideTime = new Date(p.t);
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Downstream</div>
+          <div id="down155" class="text-xl font-bold">--</div>
+        </div>
 
-        if (p.type === "H" && tideTime > now) {
-          nextHigh = tideTime;
-          break;
-        }
-      }
+        <div class="bg-slate-800 p-3 rounded-xl col-span-2">
+          <div class="text-slate-400">Last Gate Activity</div>
+          <div id="lastOpen155" class="text-lg font-bold">--</div>
+        </div>
 
-      // Simplified tide logic
-      let tideTrend = "Falling";
+      </div>
+    </div>
 
-      if (nextHigh) {
+    <!-- S-155A -->
+    <div>
+      <div class="font-bold text-lg mb-2">S-155A</div>
 
-        const diffHours =
-          (nextHigh - now) / (1000 * 60 * 60);
+      <div class="grid grid-cols-2 gap-2 text-sm">
 
-        if (diffHours <= 2) {
-          tideTrend = "High / Incoming";
-        } else {
-          tideTrend = "Incoming";
-        }
-      }
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Flow (CFS)</div>
+          <div id="flow155a" class="text-xl font-bold">--</div>
+        </div>
 
-      document.getElementById("currentTide").innerText =
-        tideTrend.includes("Incoming")
-          ? "Rising"
-          : "Falling";
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Gate Offset</div>
+          <div id="gate155a" class="text-xl font-bold">--</div>
+        </div>
 
-      document.getElementById("tideTrend").innerText =
-        tideTrend;
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Upstream</div>
+          <div id="up155a" class="text-xl font-bold">--</div>
+        </div>
 
-      document.getElementById("nextHighTide").innerText =
-        nextHigh
-          ? nextHigh.toLocaleTimeString([], {
-              hour: 'numeric',
-              minute: '2-digit'
-            })
-          : "Unavailable";
+        <div class="bg-slate-800 p-3 rounded-xl">
+          <div class="text-slate-400">Downstream</div>
+          <div id="down155a" class="text-xl font-bold">--</div>
+        </div>
 
-      return {
-        tideTrend
-      };
+        <div class="bg-slate-800 p-3 rounded-xl col-span-2">
+          <div class="text-slate-400">Last Gate Activity</div>
+          <div id="lastOpen155a" class="text-lg font-bold">--</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WATER QUALITY -->
+  <div class="card rounded-3xl p-5">
+    <h2 class="text-xl font-bold mb-4">Water Quality</h2>
+
+    <div class="grid grid-cols-3 gap-3 text-center">
+      <div class="bg-slate-800 p-3 rounded-xl">
+        <div class="text-slate-400 text-sm">Nitrogen</div>
+        <div id="nitrogen" class="text-xl font-bold">--</div>
+      </div>
+
+      <div class="bg-slate-800 p-3 rounded-xl">
+        <div class="text-slate-400 text-sm">Phosphorus</div>
+        <div id="phosphorus" class="text-xl font-bold">--</div>
+      </div>
+
+      <div class="bg-slate-800 p-3 rounded-xl">
+        <div class="text-slate-400 text-sm">Chl-a</div>
+        <div id="chlorophyll" class="text-xl font-bold">--</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYNOPSIS -->
+  <div class="card rounded-3xl p-5">
+    <h2 class="text-xl font-bold mb-3">Water Quality Synopsis</h2>
+    <p id="waterSynopsis" class="text-sm text-slate-200 leading-relaxed">
+      Loading...
+    </p>
+  </div>
+
+  <!-- DEFINITIONS -->
+  <div class="card rounded-3xl p-5">
+    <h2 class="text-xl font-bold mb-4">Definitions</h2>
+
+    <div class="space-y-3 text-sm text-slate-200">
+
+      <div><strong>CFS</strong> — Canal discharge volume.</div>
+      <div><strong>Upstream Stage</strong> — Inland water level.</div>
+      <div><strong>Downstream Stage</strong> — Ocean-side water level.</div>
+      <div><strong>Gate Offset</strong> — Degree of gate opening.</div>
+      <div><strong>Nitrogen / Phosphorus</strong> — Nutrient pollution indicators.</div>
+      <div><strong>Chlorophyll-a</strong> — Algae concentration indicator.</div>
+      <div><strong>Incoming Tide</strong> — Ocean water moving inland.</div>
+
+    </div>
+  </div>
+
+  <div class="text-center text-xs text-slate-400 pb-8">
+    Auto-refreshes every 15 minutes
+  </div>
+
+</div>
+
+<script>
+
+const NOAA_STATION = "8722670";
+
+let lastOpen155 = null;
+let lastOpen155a = null;
+
+// -------------------- NOAA --------------------
+
+async function fetchNOAA() {
+
+  const today = new Date();
+  const begin = formatDate(today);
+
+  const tomorrow = new Date();
+  tomorrow.setDate(today.getDate() + 1);
+
+  const end = formatDate(tomorrow);
+
+  const url =
+    `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?` +
+    `product=predictions&application=webapp&begin_date=${begin}` +
+    `&end_date=${end}&datum=MLLW&station=${NOAA_STATION}` +
+    `&time_zone=lst_ldt&units=english&interval=hilo&format=json`;
+
+  const res = await fetch(url);
+  const data = await res.json();
+
+  const preds = data.predictions || [];
+  const now = new Date();
+
+  let nextHigh = null;
+
+  for (const p of preds) {
+    const t = new Date(p.t);
+    if (p.type === "H" && t > now) {
+      nextHigh = t;
+      break;
     }
+  }
 
-    // =========================
-    // MOCK SFWMD DATA
-    // Replace with live DBHYDRO calls
-    // =========================
+  let trend = "Falling";
 
-    async function fetchSFWMDData() {
+  if (nextHigh) {
+    const hrs = (nextHigh - now) / 3600000;
+    trend = hrs <= 2 ? "High / Incoming" : "Incoming";
+  }
 
-      /*
-        Replace this mock section with:
-        - DBHYDRO REST endpoints
-        - CSV/XML parsing
-        - Real station IDs
-      */
+  document.getElementById("currentTide").innerText =
+    trend.includes("Incoming") ? "Rising" : "Falling";
 
-      const mock = {
+  document.getElementById("tideTrend").innerText = trend;
 
-        s155: {
-          flow: 0,
-          gate: 0.0,
-          upstream: 10.2,
-          downstream: 1.5
-        },
+  document.getElementById("nextHighTide").innerText =
+    nextHigh ? nextHigh.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : "--";
 
-        s155a: {
-          flow: 0,
-          gate: 0.0,
-          upstream: 10.1,
-          downstream: 1.6
-        },
+  return { trend };
+}
 
-        quality: {
-          nitrogen: 0.42,
-          phosphorus: 0.03,
-          chlorophyll: 3.2
-        }
-      };
+// -------------------- SFWMD (mock) --------------------
 
-      // Populate UI
-      document.getElementById("flow155").innerText =
-        mock.s155.flow;
+async function fetchSFWMD() {
 
-      document.getElementById("gate155").innerText =
-        mock.s155.gate;
+  const data = {
+    s155: { flow: 0, gate: 0, up: 10.2, down: 1.5 },
+    s155a: { flow: 0, gate: 0, up: 10.1, down: 1.6 },
+    quality: { nitrogen: 0.42, phosphorus: 0.03, chl: 3.2 }
+  };
 
-      document.getElementById("up155").innerText =
-        mock.s155.upstream;
+  document.getElementById("flow155").innerText = data.s155.flow;
+  document.getElementById("gate155").innerText = data.s155.gate;
+  document.getElementById("up155").innerText = data.s155.up;
+  document.getElementById("down155").innerText = data.s155.down;
 
-      document.getElementById("down155").innerText =
-        mock.s155.downstream;
+  document.getElementById("flow155a").innerText = data.s155a.flow;
+  document.getElementById("gate155a").innerText = data.s155a.gate;
+  document.getElementById("up155a").innerText = data.s155a.up;
+  document.getElementById("down155a").innerText = data.s155a.down;
 
-      document.getElementById("flow155a").innerText =
-        mock.s155a.flow;
+  document.getElementById("nitrogen").innerText = data.quality.nitrogen;
+  document.getElementById("phosphorus").innerText = data.quality.phosphorus;
+  document.getElementById("chlorophyll").innerText = data.quality.chl;
 
-      document.getElementById("gate155a").innerText =
-        mock.s155a.gate;
+  if (data.s155.flow > 0) lastOpen155 = new Date();
+  if (data.s155a.flow > 0) lastOpen155a = new Date();
 
-      document.getElementById("up155a").innerText =
-        mock.s155a.upstream;
+  document.getElementById("lastOpen155").innerText =
+    data.s155.flow > 0
+      ? "Gate open"
+      : lastOpen155 ? `Last open: ${lastOpen155.toLocaleString()}` : "--";
 
-      document.getElementById("down155a").innerText =
-        mock.s155a.downstream;
+  document.getElementById("lastOpen155a").innerText =
+    data.s155a.flow > 0
+      ? "Gate open"
+      : lastOpen155a ? `Last open: ${lastOpen155a.toLocaleString()}` : "--";
 
-      document.getElementById("nitrogen").innerText =
-        mock.quality.nitrogen;
+  return data;
+}
 
-      document.getElementById("phosphorus").innerText =
-        mock.quality.phosphorus;
+// -------------------- SAFETY LOGIC --------------------
 
-      document.getElementById("chlorophyll").innerText =
-        mock.quality.chlorophyll;
+function updateSafety(sfwmd, tide) {
 
-      return mock;
-    }
+  const flow =
+    sfwmd.s155.flow + sfwmd.s155a.flow;
 
-    // =========================
-    // SAFETY LOGIC
-    // =========================
+  const n = sfwmd.quality.nitrogen;
+  const p = sfwmd.quality.phosphorus;
 
-    function updateSafetyGauge(sfwmd, tide) {
+  const card = document.getElementById("safetyCard");
+  const light = document.getElementById("statusLight");
 
-      const flow =
-        sfwmd.s155.flow + sfwmd.s155a.flow;
+  const title = document.getElementById("statusText");
+  const sub = document.getElementById("statusSubtext");
 
-      const nitrogen =
-        sfwmd.quality.nitrogen;
+  const synopsis = document.getElementById("waterSynopsis");
 
-      const phosphorus =
-        sfwmd.quality.phosphorus;
+  // RED
+  if (flow > 0 || tide.trend === "Falling") {
 
-      const statusLight =
-        document.getElementById("statusLight");
+    card.className = "rounded-3xl p-6 text-center shadow-2xl bg-red-600";
 
-      const statusText =
-        document.getElementById("statusText");
+    light.className = "w-28 h-28 rounded-full mx-auto mb-5 bg-red-300 pulse";
 
-      const statusSubtext =
-        document.getElementById("statusSubtext");
+    title.innerText = "DO NOT SWIM";
+    sub.innerText = "Active discharge or falling tide.";
 
-      const safetyCard =
-        document.getElementById("safetyCard");
+    synopsis.innerText =
+      "Canal discharge or outgoing tide reduces water quality stability near the inlet.";
 
-      // RED
-      if (
-        flow > 0 ||
-        tide.tideTrend === "Falling"
-      ) {
+    return;
+  }
 
-        safetyCard.className =
-          "rounded-3xl p-6 text-center shadow-2xl bg-red-600 transition-all duration-500";
+  // YELLOW
+  if (n > 0.5 || p > 0.05 || tide.trend === "Incoming") {
 
-        statusLight.className =
-          "w-28 h-28 rounded-full mx-auto mb-5 shadow-2xl bg-red-300 pulse";
+    card.className = "rounded-3xl p-6 text-center shadow-2xl bg-yellow-500 text-black";
 
-        statusText.innerText =
-          "DO NOT SWIM";
+    light.className = "w-28 h-28 rounded-full mx-auto mb-5 bg-yellow-200 pulse";
 
-        statusSubtext.innerText =
-          "Active canal discharge or falling tide.";
+    title.innerText = "CAUTION";
 
-        return;
-      }
+    sub.innerText =
+      "Stable flow but nutrients or early tidal movement may impact clarity and bacteria levels.";
 
-      // YELLOW
-      if (
-        nitrogen > 0.5 ||
-        phosphorus > 0.05 ||
-        tide.tideTrend === "Incoming"
-      ) {
+    synopsis.innerText =
+      "No discharge detected, but nutrient levels or tidal shift may still affect water clarity and ecosystem balance.";
 
-        safetyCard.className =
-          "rounded-3xl p-6 text-center shadow-2xl bg-yellow-500 text-black transition-all duration-500";
+    return;
+  }
 
-        statusLight.className =
-          "w-28 h-28 rounded-full mx-auto mb-5 shadow-2xl bg-yellow-200 pulse";
+  // GREEN
+  card.className = "rounded-3xl p-6 text-center shadow-2xl bg-green-600";
 
-        statusText.innerText =
-          "CAUTION";
+  light.className = "w-28 h-28 rounded-full mx-auto mb-5 bg-green-200 pulse";
 
-        statusSubtext.innerText =
-          "Water is clear, but check chemical levels.";
+  title.innerText = "CLEAN WATER WINDOW";
 
-        return;
-      }
+  sub.innerText =
+    "No discharge and incoming tide flushing basin.";
 
-      // GREEN
-      safetyCard.className =
-        "rounded-3xl p-6 text-center shadow-2xl bg-green-600 transition-all duration-500";
+  synopsis.innerText =
+    "Conditions favor cleaner exchange between canal and ocean with improved flushing.";
 
-      statusLight.className =
-        "w-28 h-28 rounded-full mx-auto mb-5 shadow-2xl bg-green-200 pulse";
+}
 
-      statusText.innerText =
-        "CLEAN WATER WINDOW";
+// -------------------- UTIL --------------------
 
-      statusSubtext.innerText =
-        "Gates are locked and the ocean is flushing the basin!";
-    }
+function formatDate(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}${m}${day}`;
+}
 
-    // =========================
-    // UTIL
-    // =========================
+// -------------------- LOOP --------------------
 
-    function formatDate(date) {
+async function refresh() {
 
-      const y = date.getFullYear();
+  try {
+    const tide = await fetchNOAA();
+    const sfwmd = await fetchSFWMD();
+    updateSafety(sfwmd, tide);
+  } catch (e) {
+    console.error(e);
+  }
+}
 
-      const m = String(
-        date.getMonth() + 1
-      ).padStart(2, '0');
+refresh();
+setInterval(refresh, 15 * 60 * 1000);
 
-      const d = String(
-        date.getDate()
-      ).padStart(2, '0');
-
-      return `${y}${m}${d}`;
-    }
-
-    // =========================
-    // MAIN REFRESH
-    // =========================
-
-    async function refreshAll() {
-
-      try {
-
-        const tide =
-          await fetchNOAAData();
-
-        const sfwmd =
-          await fetchSFWMDData();
-
-        updateSafetyGauge(
-          sfwmd,
-          tide
-        );
-
-      } catch (err) {
-
-        console.error(err);
-
-        document.getElementById("statusText")
-          .innerText = "Data Error";
-
-        document.getElementById("statusSubtext")
-          .innerText = "Unable to load live feeds.";
-      }
-    }
-
-    // Initial load
-    refreshAll();
-
-    // Refresh every 15 minutes
-    setInterval(
-      refreshAll,
-      15 * 60 * 1000
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
